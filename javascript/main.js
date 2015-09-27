@@ -52,11 +52,12 @@ var ENEMY_ACCEL = ENEMY_MAXDX * 2;
 
 var enemies = [];
 
-var LAYER_COUNT = 3;
-var LAYER_BACKGROUND = 0;
-var LAYER_PLATFORMS = 1;
-var LAYER_LADDERS = 2;
+
 var LAYER_OBJECT_ENEMIES = 3;
+var LAYER_BACKGROUND = 0;
+
+var LAYER_LADDERS = 2;
+
 var LAYER_OBJECT_TRIGGERS = 4;
 
 //collision array
@@ -87,7 +88,8 @@ function initialise()
 				idx++;
 			}
 		}
-
+		 LAYER_COUNT = 3;
+		 LAYER_PLATFORMS = 1;
 		//create enemies
 		idx = 0;
 		for(var y = 0; y < level.layers[LAYER_OBJECT_ENEMIES].height; y++)
@@ -129,38 +131,52 @@ function run()
 	context.fillRect(0, 0, canvas.width, canvas.height);
 	
 	var deltaTime = getDeltaTime();
-	
-	player.update(deltaTime);
-	
-	cam_x = bound(player.x - canvas.width / 2, 0, MAP.tw * TILE);
-	cam_y = bound(player.y - canvas.height / 2, 0, canvas.height);
-	
-	drawMap(cam_x, cam_y);
-	player.draw(cam_x, cam_y);
 
-	for(var i=0; i<enemies.length; i++)
+	if(player.lives < 1)
 	{
-		enemies[i].update(deltaTime);
+		context.fillStyle = "#f00";
+		context.font="14px Arial";
+		context.fillText("GAME OVER ", 5, 20, 100);
+		context.fillText("Press spacebar to restart", 5, 100);
+
+		if (keyboard.isKeyDown(keyboard.KEY_SPACE))
+		{
+			player.lives = 3;
+		}
+
 	}
-	for(var i=0; i<enemies.length; i++)
+	else
 	{
-		enemies[i].draw(deltaTime);
-	}
-		
+
+		player.update(deltaTime);
+
+		cam_x = bound(player.x - canvas.width / 2, 0, MAP.tw * TILE);
+		cam_y = bound(player.y - canvas.height / 2, 0, canvas.height);
+
+		drawMap(cam_x, cam_y);
+		player.draw(cam_x, cam_y);
+
+		for (var i = 0; i < enemies.length; i++) {
+			enemies[i].update(deltaTime);
+		}
+		for (var i = 0; i < enemies.length; i++) {
+			enemies[i].draw(cam_x, cam_y);
+		}
+
 		// update the frame counter 
-	fpsTime += deltaTime;
-	fpsCount++;
-	if(fpsTime >= 1)
-	{
-		fpsTime -= 1;
-		fps = fpsCount;
-		fpsCount = 0;
-	}		
-		
-	// draw the FPS
-	//context.fillStyle = "#f00";
-	//context.font="14px Arial";
-	//context.fillText("FPS: " + fps, 5, 20, 100);
+		fpsTime += deltaTime;
+		fpsCount++;
+		if (fpsTime >= 1) {
+			fpsTime -= 1;
+			fps = fpsCount;
+			fpsCount = 0;
+		}
+
+		// draw the FPS
+		//context.fillStyle = "#f00";
+		//context.font="14px Arial";
+		//context.fillText("FPS: " + fps, 5, 20, 100);
+	}
 }
 
 
