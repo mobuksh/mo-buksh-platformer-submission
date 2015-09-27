@@ -47,12 +47,25 @@ var FRICTION = MAXDX * 6;
 
 var JUMP = METER * 1500;
 
+var ENEMY_MAXDX = METER * 5;
+var ENEMY_ACCEL = ENEMY_MAXDX * 2;
+
+var enemies = [];
+
+var LAYER_COUNT = 3;
+var LAYER_BACKGROUND = 0;
+var LAYER_PLATFORMS = 1;
+var LAYER_LADDERS = 2;
+var LAYER_OBJECT_ENEMIES = 3;
+var LAYER_OBJECT_TRIGGERS = 4;
+
 //collision array
 var cells = [];
 function initialise()
 {
 	for (var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++)
 	{
+		// create environment tiles
 		cells[layerIdx] = [];
 		var idx = 0;
 		for (var y = 0; y < level.layers[layerIdx].height; y++)
@@ -74,6 +87,23 @@ function initialise()
 				idx++;
 			}
 		}
+
+		//create enemies
+		idx = 0;
+		for(var y = 0; y < level.layers[LAYER_OBJECT_ENEMIES].height; y++)
+		{
+			for(var x = 0; x < level.layers[LAYER_OBJECT_ENEMIES].width; x++)
+			{
+				if(level.layers[LAYER_OBJECT_ENEMIES].data[idx] !=0)
+				{
+					var px = tileToPixel(x);
+					var py = tileToPixel(y);
+					var e = new Enemy(px, py);
+					enemies.push(e);
+				}
+				idx++;
+			}
+		}
 	}
 }
 
@@ -83,7 +113,7 @@ var keyboard = new Keyboard();
 
 var music = new Howl(
 {
-	urls: ["background.ogg"],
+	urls: ["audio/background.ogg"],
 	loop: true,
 	buffer: true,
 	volume: 0.5
@@ -107,6 +137,15 @@ function run()
 	
 	drawMap(cam_x, cam_y);
 	player.draw(cam_x, cam_y);
+
+	for(var i=0; i<enemies.length; i++)
+	{
+		enemies[i].update(deltaTime);
+	}
+	for(var i=0; i<enemies.length; i++)
+	{
+		enemies[i].draw(deltaTime);
+	}
 		
 		// update the frame counter 
 	fpsTime += deltaTime;

@@ -16,7 +16,7 @@ var Player = function() {
 	//this.image = document.createElement("img");
 	//this.image.src = "hero.png";   
 
-	this.sprite = new Sprite("ChuckNorris.png");
+	this.sprite = new Sprite("images/ChuckNorris.png");
 	
 	//idle left
 	this.sprite.buildAnimation(12, 8, 165, 126, 0.05, 
@@ -74,14 +74,14 @@ var Player = function() {
 	
 	this.lives = 3;
 	this.lives_image = document.createElement("img");
-	this.lives_image.src = "heart.png";
+	this.lives_image.src = "images/heart.png";
 	
 	////////////////////////////////////
 	var self = this;
 	this.jump_sfx_isPlaying = false;
 	this.jump_sfx = new Howl(
 	{
-		urls : ["fireEffect.ogg"],
+		urls : ["audio/fireEffect.ogg"],
 		buffer : true,
 		volume : 1,
 		onend: function() {
