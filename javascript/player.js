@@ -71,10 +71,21 @@ var Player = function() {
 	
 	this.falling = true;
 	this.jumping = false;
+
+    this.die = new Howl(
+        {
+            urls : ["audio/die-sound.mp3"],
+            buffer : true,
+            volume : 1//,
+            //onend: function()
+            //{
+            //	self.jump_sfx_isPlaying = false;
+            //}
+        });
 	
 	this.lives = 3;
 	this.lives_image = document.createElement("img");
-	this.lives_image.src = "images/heart.png";
+	this.lives_image.src = "images/hero.png";
 	
 	////////////////////////////////////
 	var self = this;
@@ -92,13 +103,13 @@ var Player = function() {
 };
 
 Player.prototype.update = function(deltaTime)
-{	
+{
 	this.sprite.update(deltaTime);
 
 	var left = false;
 	var right = false;
 	var jump = false;
-	
+
 	if (keyboard.isKeyDown(keyboard.KEY_LEFT))
 	{
 		left = true;
@@ -133,35 +144,39 @@ Player.prototype.update = function(deltaTime)
 			}
 		}
 	}
-	
+
 	if (keyboard.isKeyDown(keyboard.KEY_SPACE))
 	{
-		jump = true;
-		if (left) 
-			this.sprite.setAnimation(ANIM_JUMP_LEFT);
-		
-		if (right)
-			this.sprite.setAnimation(ANIM_JUMP_RIGHT);
-		
+		if (restart == 0) {
+			jump = true;
+			if (left)
+				this.sprite.setAnimation(ANIM_JUMP_LEFT);
+
+			if (right)
+				this.sprite.setAnimation(ANIM_JUMP_RIGHT);
+		}
 
 	}
-	
-	if (keyboard.isKeyDown(keyboard.KEY_SHIFT) && !jump)
+
+	if (keyboard.isKeyDown(keyboard.KEY_SHIFT) && !this.jumping && bulletCount > 0)
 	{
-		this.shooting = true;
-		if (this.direction == LEFT)
-		{
-			if (this.sprite.currentAnimation != ANIM_SHOOT_LEFT )
-				this.sprite.setAnimation(ANIM_SHOOT_LEFT);
-		}
-		else
-		{
-			if (this.sprite.currentAnimation != ANIM_SHOOT_RIGHT)
-				this.sprite.setAnimation(ANIM_SHOOT_RIGHT);
-		}
+			this.shooting = true;
+			if (this.direction == LEFT)
+			{
+				if (this.sprite.currentAnimation != ANIM_SHOOT_LEFT)
+					this.sprite.setAnimation(ANIM_SHOOT_LEFT);
+			}
+			else
+			{
+				if (this.sprite.currentAnimation != ANIM_SHOOT_RIGHT)
+					this.sprite.setAnimation(ANIM_SHOOT_RIGHT);
+			}
+				bulletCount--;
 	}
 	else if (this.shooting)
+	{
 		this.shooting = false;
+	}
 	
 	
 	var wasleft = (this.velocity_x < 0);
@@ -181,7 +196,7 @@ Player.prototype.update = function(deltaTime)
 	else if (wasright)
 		ddx = ddx - FRICTION;
 	
-	if (jump && !this.jumping && !falling) 
+	if (jump && !this.jumping && !falling)
 	{
 		ddy = ddy - JUMP;
 		this.jumping = true;
@@ -191,9 +206,11 @@ Player.prototype.update = function(deltaTime)
 			this.sprite.setAnimation(ANIM_JUMP_RIGHT);
 		
 		if (!this.jump_sfx_isPlaying)
-		{	
-			this.jump_sfx.play();
-			this.jump_sfx_isPlaying = true;
+		{
+			if(restart == 0) {
+				this.jump_sfx.play();
+				this.jump_sfx_isPlaying = true;
+			}
 		}
 		
 	}
@@ -266,8 +283,10 @@ Player.prototype.update = function(deltaTime)
 	
 	if (this.y > canvas.height	+ 300)
 	{
+        this.die.play();
 		this.lives --;
-		this.x = this.start_x;
+
+ 		this.x = this.start_x;
 		this.y = this.start_y;
 	}
 }
@@ -279,10 +298,10 @@ Player.prototype.draw = function(cam_x, cam_y)
 	for (var i = 0; i < this.lives; i++)
 	{
 		context.save();
-			context.translate(50 + ( 5 + this.lives_image.width) * i, 40);
+			context.translate(50*(i)+50, 40);
 			context.drawImage(this.lives_image,
-				-this.lives_image.width/2, -this.lives_image.height/2,
-				this.lives_image.width, this.lives_image.height);
+				-this.lives_image.width/4, -this.lives_image.height/4,
+				this.lives_image.width/4, this.lives_image.height/4);
 		context.restore();
 	}
 }

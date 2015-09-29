@@ -1,6 +1,8 @@
 /**
  * Created by mrcheese on 27/09/15.
  */
+
+ var bulletCount = 100;
  var Bullet = function (x,y, moveRight)
 {
     this.sprite = new Sprite("images/bullet.png");
@@ -32,6 +34,6 @@ Bullet.prototype.update = function(deltaTime)
 
 Bullet.prototype.draw = function()
 {
-    var screenX = this.position.x - worldOffsetX;
+    var screenX = this.position.x; //- worldOffsetX;
     this.sprite.draw(context, screenX, this.position.y);
 }
