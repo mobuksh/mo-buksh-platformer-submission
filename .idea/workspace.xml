@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4dc13ad-d6a9-453c-8e1b-adbfd98a824a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascript/player.js" afterPath="$PROJECT_DIR$/javascript/player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascript/main.js" afterPath="$PROJECT_DIR$/javascript/main.js" />
     </list>
     <ignored path="mo-buksh-platformer-submission.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascript/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="143" column="32" selection-start-line="143" selection-start-column="25" selection-end-line="143" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.57295376">
+              <caret line="105" column="7" selection-start-line="105" selection-start-column="7" selection-end-line="105" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -67,10 +66,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascript/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.77205884">
+            <state vertical-scroll-proportion="-23.333334">
               <caret line="194" column="0" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
               <folding />
             </state>
@@ -126,8 +125,8 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/bullet.js" />
         <option value="$PROJECT_DIR$/javascript/bullet.js" />
-        <option value="$PROJECT_DIR$/javascript/main.js" />
         <option value="$PROJECT_DIR$/javascript/player.js" />
+        <option value="$PROJECT_DIR$/javascript/main.js" />
       </list>
     </option>
   </component>
@@ -642,18 +641,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascript/main.js">
+    <entry file="file://$PROJECT_DIR$/javascript/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="143" column="32" selection-start-line="143" selection-start-column="25" selection-end-line="143" selection-end-column="44" />
+        <state vertical-scroll-proportion="-23.333334">
+          <caret line="194" column="0" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascript/player.js">
+    <entry file="file://$PROJECT_DIR$/javascript/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.77205884">
-          <caret line="194" column="0" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.57295376">
+          <caret line="105" column="7" selection-start-line="105" selection-start-column="7" selection-end-line="105" selection-end-column="7" />
           <folding />
         </state>
       </provider>

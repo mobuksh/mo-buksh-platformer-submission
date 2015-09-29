@@ -102,7 +102,7 @@ var music = new Howl(
 });
 
 //UNCOMMENT FOR MUSIC
-//music.play();
+music.play();
 var cam_x = 0;
 var cam_y = 0;
 
