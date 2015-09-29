@@ -166,7 +166,7 @@ Player.prototype.update = function(deltaTime)
 
 	}
 
-	if (keyboard.isKeyDown(keyboard.KEY_SHIFT) && !this.jumping )
+	if (keyboard.isKeyDown(keyboard.KEY_SHIFT) && !this.jumping && (globalBulletCounter > 0))
 	{
 			this.shooting = true;
 			if (this.direction == LEFT)
@@ -190,6 +190,9 @@ Player.prototype.update = function(deltaTime)
             this.shoot_cooldown = this.shoot_timer;
 
             this.cur_bullet_index++;
+            globalBulletCounter--;
+
+
             if(this.cur_bullet_index >= this.max_bullets)
                 this.cur_bullet_index = 0;
         }
@@ -205,7 +208,7 @@ Player.prototype.update = function(deltaTime)
     for(var i = 0; i < this.max_bullets; i++)
     {
         this.bullets[i].update(deltaTime);
-        globalBulletCounter--;
+
     }
 
 	var wasleft = (this.velocity_x < 0);
