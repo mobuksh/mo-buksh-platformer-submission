@@ -54,7 +54,13 @@ var LAYER_LADDERS = 2;
 var LAYER_OBJECT_TRIGGERS = 4;
 var restart = 0;
 var bulletImage = document.createElement("img");
+var reload = false;
 bulletImage.src = "images/3d-bullet-cropped.png";
+
+if (keyboard.isKeyDown(keyboard.KEY_ENTER) && globalBulletCounter == 0)
+{
+    globalBulletCounter = 50;
+}
 
 //collision array
 var cells = [];
@@ -102,7 +108,7 @@ var music = new Howl(
 });
 
 //UNCOMMENT FOR MUSIC
-music.play();
+//music.play();
 var cam_x = 0;
 var cam_y = 0;
 
@@ -126,6 +132,8 @@ function run()
 		if (keyboard.isKeyDown(keyboard.KEY_ENTER))
 		{
 			player.lives = 3;
+
+			globalBulletCounter = 50;
 		}
 
 	}

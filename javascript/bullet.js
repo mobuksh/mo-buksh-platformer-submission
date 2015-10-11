@@ -1,5 +1,5 @@
 /**
- * Created by mrcheese on 29/09/15.
+ * Created by mobuksh on 29/09/15.
  */
 
 var BULLET_SPEED = 1000;

@@ -24,12 +24,12 @@ var Keyboard = function() {
 	this.KEY_SHIFT = 16;
 };
 
-Keyboard.prototype.onKeyDown = function(evt) 
+Keyboard.prototype.onKeyDown = function(evt)
 {
 	this.keys[evt.keyCode] = true;
 };
 
-Keyboard.prototype.onKeyUp = function(evt) 
+Keyboard.prototype.onKeyUp = function(evt)
 {
 	this.keys[evt.keyCode] = false;
 };
