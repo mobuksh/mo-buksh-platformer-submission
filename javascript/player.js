@@ -13,6 +13,9 @@ var ANIM_MAX = 8;
 var globalBulletCounter = 50;
 
 var Player = function() {	
+	// delete me
+	//this.image = document.createElement("img");
+	//this.image.src = "hero.png";   
 
 	this.sprite = new Sprite("images/ChuckNorris.png");
 	
@@ -110,6 +113,7 @@ var Player = function() {
 Player.prototype.update = function(deltaTime)
 {
 	this.sprite.update(deltaTime);
+    this.bulletCounter = 0;
 	var left = false;
 	var right = false;
 	var jump = false;
